@@ -5,6 +5,9 @@ import { QubicHelper } from '@qubic-lib/qubic-ts-library/dist/qubicHelper';
 import { TICK_OFFSET, useConfig } from '@/contexts/QubicContext/ConfigContext';
 import { useQubicConnect } from '@/contexts/QubicContext/QubicConnectContext';
 
+const QEARN_INDEX = 9; // Qearn contract index
+const LOCK_PROC_INDEX = 1; // Lock procedure index
+
 const HM25Context = createContext();
 
 const initialState = {
@@ -13,7 +16,7 @@ const initialState = {
   error: null,
 };
 
-function hm25Reducer (state, action) {
+function hm25Reducer(state, action) {
   switch (action.type) {
     case 'SET_STATS':
       return { ...state, stats: action.payload };
@@ -151,9 +154,35 @@ export const HM25Provider = ({ children }) => {
     }
   };
 
+  const lock = async (amount) => {
+    if (!connected || !wallet) return;
+    try {
+      dispatch({ type: 'SET_LOADING', payload: true });
+      const tick = await getTick();
+      const unsignedTx = await buildTx(
+        qHelper,
+        qHelper.getIdentityBytes(walletPublicIdentity),
+        QEARN_INDEX,
+        LOCK_PROC_INDEX,
+        tick,
+        amount,
+      );
+      const finalTx = await signTransaction(unsignedTx);
+      const broadcastRes = await broadcastTx(finalTx);
+      console.log('Burn TX result:', broadcastRes);
+      return { targetTick: tick + TICK_OFFSET, txResult: broadcastRes };
+    } catch (err) {
+      console.error(err);
+      dispatch({ type: 'SET_ERROR', payload: 'Failed to burn coins' });
+      throw err;
+    } finally {
+      dispatch({ type: 'SET_LOADING', payload: false });
+    }
+  };
+
   return (
     <HM25Context.Provider
-      value={{ state, echo, burn, balance, walletPublicIdentity, fetchBalance }}
+      value={{ state, echo, burn, lock, balance, walletPublicIdentity, fetchBalance }}
     >
       {children}
     </HM25Context.Provider>
