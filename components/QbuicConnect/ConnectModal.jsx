@@ -208,60 +208,60 @@ const ConnectModal = ({ open, onClose }) => {
   };
 
   return (
-    <Modal backdrop='blur' isOpen={open} onClose={onClose}>
-      <ModalContent className='mt-2'>
+    <Modal backdrop="blur" isOpen={open} onClose={onClose}>
+      <ModalContent className="mt-2">
         <>
           <ModalHeader>
-            <div className='flex justify-between items-center mb-4'>
-              <img src='/QubicAssets/qubic-connect.svg' alt='Qubic Connect' className='h-6' />
+            <div className="flex justify-between items-center mb-4">
+              <img src="/QubicAssets/qubic-connect.svg" alt="Qubic Connect" className="h-6" />
             </div>
           </ModalHeader>
 
-          <ModalBody className='mb-2'>
+          <ModalBody className="mb-2">
             {selectedMode === 'none' && (
-              <div className='space-y-4 text-white'>
+              <div className="space-y-4 text-white">
                 {connected && (
-                  <div className='space-y-4'>
-                    <p className='font-bold'>Connected as:</p>
-                    <div className='flex items-center space-x-2'>
-                      <span className='font-mono'>{truncateMiddle(walletPublicIdentity, 40)}</span>
+                  <div className="space-y-4">
+                    <p className="font-bold">Connected as:</p>
+                    <div className="flex items-center space-x-2">
+                      <span className="font-mono">{truncateMiddle(walletPublicIdentity, 40)}</span>
                       <button
                         onClick={handleCopyClick}
-                        className='p-1 hover:bg-gray-600 rounded'
-                        title='Copy full address'
+                        className="p-1 hover:bg-gray-600 rounded"
+                        title="Copy full address"
                       >
                         {copied ? (
                           // check icon
                           <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            className='h-5 w-5 text-green-400'
-                            viewBox='0 0 20 20'
-                            fill='currentColor'
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 text-green-400"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
                           >
                             <path
-                              fillRule='evenodd'
-                              d='M16.707 5.293a1 1 0 010 1.414l-7.39 7.39a1 1 0 01-1.414 0l-3.29-3.29a1 1 0 011.414-1.414l2.583 2.583 6.683-6.683a1 1 0 011.414 0z'
-                              clipRule='evenodd'
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-7.39 7.39a1 1 0 01-1.414 0l-3.29-3.29a1 1 0 011.414-1.414l2.583 2.583 6.683-6.683a1 1 0 011.414 0z"
+                              clipRule="evenodd"
                             />
                           </svg>
                         ) : (
                           // copy icon
                           <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            viewBox='0 0 24 24'
-                            width='1em'
-                            height='1em'
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="1em"
+                            height="1em"
                           >
                             <path
-                              fill='currentColor'
-                              d='M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2m0 16H8V7h11z'
+                              fill="currentColor"
+                              d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2m0 16H8V7h11z"
                             />
                           </svg>
                         )}
                       </button>
                     </div>
                     <button
-                      className='bg-[#61F0FE] text-black p-4 rounded-lg w-full'
+                      className="bg-emerald-400 text-black p-4 rounded-lg w-full"
                       onClick={() => {
                         disconnect();
                         closeModal();
@@ -274,27 +274,27 @@ const ConnectModal = ({ open, onClose }) => {
                 {!connected && (
                   <>
                     <button
-                      className='bg-[#61F0FE] text-black p-3 rounded-lg w-full flex items-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed'
+                      className="bg-emerald-400 text-black p-3 rounded-lg w-full flex items-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
                       onClick={() => setSelectedMode('metamask')}
                     >
                       <img
-                        src='/QubicAssets/metamask.svg'
-                        alt='Metamask Icon'
-                        className='h-6 w-6'
+                        src="/QubicAssets/metamask.svg"
+                        alt="Metamask Icon"
+                        className="h-6 w-6"
                       />
                       Connect with MetaMask
                     </button>
                     <button
-                      className='bg-[#61F0FE] text-black p-3 rounded-lg w-full flex items-center gap-2'
+                      className="bg-emerald-400 text-black p-3 rounded-lg w-full flex items-center gap-2"
                       onClick={() => {
                         setSelectedMode('walletconnect');
                         startWalletConnect();
                       }}
                     >
                       <img
-                        src='/QubicAssets/wallet-connect.svg'
-                        alt='WalletConnect Icon'
-                        className='h-6 w-6'
+                        src="/QubicAssets/wallet-connect.svg"
+                        alt="WalletConnect Icon"
+                        className="h-6 w-6"
                       />
                       Connect with WalletConnect
                     </button>
@@ -306,13 +306,13 @@ const ConnectModal = ({ open, onClose }) => {
                       <div className='flex-grow border-t border-gray-500'></div>
                     </div>
                     <button
-                      className='bg-[#61F0FE] text-black p-3 rounded-lg w-full'
+                      className='bg-primary text-black p-3 rounded-lg w-full'
                       onClick={() => setSelectedMode('private-seed')}
                     >
                       Private Seed
                     </button>
                     <button
-                      className='bg-[#61F0FE] text-black p-3 rounded-lg w-full'
+                      className='bg-primary text-black p-3 rounded-lg w-full'
                       onClick={() => setSelectedMode('vault-file')}
                     >
                       Vault File
@@ -328,7 +328,7 @@ const ConnectModal = ({ open, onClose }) => {
                 </div>
                 <div className='mt-4'>
                   <button
-                    className='bg-[#61F0FE] p-3 rounded-lg w-full text-black'
+                    className='bg-primary p-3 rounded-lg w-full text-black'
                     onClick={() => setSelectedMode('server-config')}
                   >
                     Connect to Server
@@ -338,24 +338,24 @@ const ConnectModal = ({ open, onClose }) => {
             )}
 
             {selectedMode === 'private-seed' && (
-              <div className='text-white space-y-4'>
+              <div className="text-white space-y-4">
                 <p>Enter your 55-char private seed:</p>
                 <input
-                  type='text'
-                  className='w-full p-3 bg-gray-700 rounded'
+                  type="text"
+                  className="w-full p-3 bg-gray-700 rounded"
                   value={privateSeed}
                   onChange={(e) => handleSeedChange(e.target.value)}
                 />
-                {errorMsgSeed && <p className='text-red-500'>{errorMsgSeed}</p>}
-                <div className='grid grid-cols-2 gap-4 mt-4'>
+                {errorMsgSeed && <p className="text-red-500">{errorMsgSeed}</p>}
+                <div className="grid grid-cols-2 gap-4 mt-4">
                   <button
-                    className='bg-gray-600 p-3 rounded'
+                    className="bg-gray-600 p-3 rounded"
                     onClick={() => setSelectedMode('none')}
                   >
                     Cancel
                   </button>
                   <button
-                    className='bg-[#61F0FE] p-3 text-black rounded'
+                    className="bg-emerald-400 p-3 text-black rounded"
                     onClick={connectPrivateSeed}
                     disabled={!!errorMsgSeed}
                   >
@@ -366,30 +366,30 @@ const ConnectModal = ({ open, onClose }) => {
             )}
 
             {selectedMode === 'vault-file' && (
-              <div className='text-white space-y-4'>
+              <div className="text-white space-y-4">
                 <p>Select your vault file</p>
                 <input
-                  type='file'
+                  type="file"
                   onChange={handleVaultFileChange}
-                  className='w-full p-3 bg-gray-700 rounded'
+                  className="w-full p-3 bg-gray-700 rounded"
                 />
                 <p>Enter vault password</p>
                 <input
-                  type='password'
-                  className='w-full p-3 bg-gray-700 rounded'
+                  type="password"
+                  className="w-full p-3 bg-gray-700 rounded"
                   value={vaultPassword}
                   onChange={(e) => setVaultPassword(e.target.value)}
                 />
-                {errorMsgVault && <p className='text-red-500'>{errorMsgVault}</p>}
-                <div className='grid grid-cols-2 gap-4 mt-4'>
+                {errorMsgVault && <p className="text-red-500">{errorMsgVault}</p>}
+                <div className="grid grid-cols-2 gap-4 mt-4">
                   <button
-                    className='bg-gray-600 p-3 rounded'
+                    className="bg-gray-600 p-3 rounded"
                     onClick={() => setSelectedVaultFileState()}
                   >
                     Cancel
                   </button>
                   <button
-                    className='bg-[#61F0FE] p-3 text-black rounded'
+                    className="bg-emerald-400 p-3 text-black rounded"
                     onClick={connectVaultFile}
                   >
                     Unlock
@@ -399,16 +399,16 @@ const ConnectModal = ({ open, onClose }) => {
             )}
 
             {selectedMode === 'metamask' && (
-              <div className='text-white space-y-4'>
+              <div className="text-white space-y-4">
                 <p>Connect via MetaMask Snap for Qubic</p>
                 <button
-                  className='bg-[#61F0FE] p-3 text-black rounded w-full'
+                  className="bg-emerald-400 p-3 text-black rounded w-full"
                   onClick={() => connectMetamask()}
                 >
                   Install/Use Qubic Snap
                 </button>
                 <button
-                  className='mt-2 bg-gray-600 p-3 rounded w-full'
+                  className="mt-2 bg-gray-600 p-3 rounded w-full"
                   onClick={() => setSelectedMode('none')}
                 >
                   Cancel
@@ -417,37 +417,37 @@ const ConnectModal = ({ open, onClose }) => {
             )}
 
             {selectedMode === 'walletconnect' && (
-              <div className='text-white space-y-4'>
+              <div className="text-white space-y-4">
                 <p>Connect via Qubic Wallet (WalletConnect)</p>
                 {wcIsConnecting && (
-                  <p className='text-sm text-gray-400'>Generating WalletConnect session...</p>
+                  <p className="text-sm text-gray-400">Generating WalletConnect session...</p>
                 )}
                 {!wcIsConnecting && (
                   <>
                     {wcQrCode ? (
-                      <div className='w-full flex flex-col items-center'>
-                        <img src={wcQrCode} alt='WalletConnect QR' className='mx-auto mb-2' />
+                      <div className="w-full flex flex-col items-center">
+                        <img src={wcQrCode} alt="WalletConnect QR" className="mx-auto mb-2" />
                       </div>
                     ) : (
-                      wcUri && <p className='break-all text-sm'>URI: {wcUri}</p>
+                      wcUri && <p className="break-all text-sm">URI: {wcUri}</p>
                     )}
 
                     {wcIsConnected ? (
                       <button
-                        className='bg-[#61F0FE] p-3 text-black rounded w-full'
+                        className="bg-emerald-400 p-3 text-black rounded w-full"
                         onClick={connectWalletConnect}
                       >
                         Continue
                       </button>
                     ) : (
-                      <p className='text-sm text-gray-400'>
+                      <p className="text-sm text-gray-400">
                         {wcUri ? '' : 'No new session. Possibly an existing session is active.'}
                       </p>
                     )}
                   </>
                 )}
                 <button
-                  className='mt-2 bg-gray-600 p-3 rounded w-full'
+                  className="mt-2 bg-gray-600 p-3 rounded w-full"
                   onClick={() => setSelectedMode('none')}
                 >
                   Cancel
@@ -456,11 +456,11 @@ const ConnectModal = ({ open, onClose }) => {
             )}
 
             {selectedMode === 'server-config' && (
-              <div className='text-white space-y-4'>
-                <h3 className='text-xl font-bold'>Server Configuration</h3>
+              <div className="text-white space-y-4">
+                <h3 className="text-xl font-bold">Server Configuration</h3>
                 {connectedToCustomServer ? (
                   <button
-                    className='bg-[#61F0FE] p-3 text-black rounded w-full'
+                    className="bg-emerald-400 p-3 text-black rounded w-full"
                     onClick={() => {
                       resetEndpoints();
                       setSelectedMode('none');
@@ -472,24 +472,24 @@ const ConnectModal = ({ open, onClose }) => {
                   </button>
                 ) : (
                   <div>
-                    <label className='block mb-2'>HTTP Endpoint:</label>
+                    <label className="block mb-2">HTTP Endpoint:</label>
                     <input
-                      type='text'
-                      className='w-full p-3 bg-gray-700 rounded'
-                      placeholder='Enter HTTP Endpoint'
+                      type="text"
+                      className="w-full p-3 bg-gray-700 rounded"
+                      placeholder="Enter HTTP Endpoint"
                       value={httpEndpointInput}
                       onChange={(e) => setHttpEndpointInput(e.target.value)}
                     />
-                    {errorMsg && <p className='text-red-500 mt-2'>{errorMsg}</p>}
-                    <div className='grid grid-cols-2 gap-4 mt-4'>
+                    {errorMsg && <p className="text-red-500 mt-2">{errorMsg}</p>}
+                    <div className="grid grid-cols-2 gap-4 mt-4">
                       <button
-                        className='bg-gray-600 p-3 rounded'
+                        className="bg-gray-600 p-3 rounded"
                         onClick={() => setSelectedMode('none')}
                       >
                         Cancel
                       </button>
                       <button
-                        className='bg-[#61F0FE] p-3 text-black rounded'
+                        className="bg-emerald-400 p-3 text-black rounded"
                         onClick={() => {
                           if (!httpEndpointInput) {
                             setErrorMsg('Please enter an HTTP Endpoint.');

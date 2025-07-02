@@ -1,32 +1,50 @@
 import React, { FC } from 'react';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from '@heroui/react';
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  Input,
+} from '@heroui/react';
+import { FaArrowDown } from 'react-icons/fa';
+
+import { Token } from '@/types';
 
 interface ConfirmSwapModalProps {
   isOpen: boolean;
   onClose: () => void;
+  fromToken: Token;
+  toToken: Token;
 }
 
-export const ConfirmSwapModal: FC<ConfirmSwapModalProps> = ({ isOpen, onClose }) => {
+export const ConfirmSwapModal: FC<ConfirmSwapModalProps> = ({
+  isOpen,
+  onClose,
+  fromToken,
+  toToken,
+}) => {
   return (
     <Modal backdrop="blur" isOpen={isOpen} size="sm" onClose={onClose}>
       <ModalContent>
         {(onClose) => (
           <>
-            <ModalHeader className='flex flex-col gap-1'>Modal Title</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">Confirm Swap</ModalHeader>
             <ModalBody>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
-                risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
-                quam.
-              </p>
+              <Input className="w-full" label={fromToken.symbol} placeholder="0.00" size="lg" />
+              <div className="flex items-center justify-center my-4">
+                <FaArrowDown />
+              </div>
+              <Input className="w-full" label={toToken.symbol} placeholder="0.00" size="lg" />
             </ModalBody>
             <ModalFooter>
-              <Button color='danger' variant='light' onPress={onClose}>
-                Close
-              </Button>
-              <Button color='primary' onPress={onClose}>
-                Action
-              </Button>
+              <div className="flex w-full gap-2">
+                <Button className="w-full bg-emerald-400">Confirm</Button>
+                <Button className="w-full" color="warning" variant="light" onClick={onClose}>
+                  Cancel
+                </Button>
+              </div>
             </ModalFooter>
           </>
         )}
